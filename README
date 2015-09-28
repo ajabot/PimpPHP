@@ -1,0 +1,40 @@
+### Pimp Application
+To Instanciate application:
+
+require_once('autoload.php');
+$app = new Pimp\Pimp();
+
+add custom service:
+
+$template = new Smarty(); //beware of the interfaces
+require_once('autoload.php');
+$app = new Pimp\Pimp(
+    array(
+        'template' => $template
+    )
+);
+
+Define a GET route:
+$app->get('/pattern', 'ControllerClassName:MethodName');
+Define a POST route:
+$app->post('/pattern', 'ControllerClassName:MethodName');
+Define a PUT route:
+$app->put('/pattern', 'ControllerClassName:MethodName');
+Define a DELETE route:
+$app->delete('/pattern', 'ControllerClassName:MethodName');
+
+You can use variables in the route (but not conditions):
+$app->get('/post/:idpost/comment/:idcomment', 'ControllerClassName:MethodName');
+
+Run the application:
+$app->run();
+
+
+### Unit test
+Please make sure that PHPUnit is installed
+
+to run the (incomplete) tests:
+
+phpunit Test/ (all tests)
+phpunit Test/Controller (Controller tests)
+phpunit Test/Pimp (Pimp tests)
